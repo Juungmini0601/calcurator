@@ -22,31 +22,40 @@ public class App {
 	private static final Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		try {
-			System.out.print("첫 번째 숫자 입력(0 이상의 정수): ");
-			int num1 = sc.nextInt();
-			validateInputNumber(num1);
+		while (true) {
+			try {
+				System.out.print("첫 번째 숫자 입력(0 이상의 정수): ");
+				int num1 = sc.nextInt();
+				validateInputNumber(num1);
 
-			System.out.print("두 번째 숫자 입력(0 이상의 정수): ");
-			int num2 = sc.nextInt();
-			validateInputNumber(num2);
+				System.out.print("두 번째 숫자 입력(0 이상의 정수): ");
+				int num2 = sc.nextInt();
+				validateInputNumber(num2);
 
-			System.out.print("사칙연산 기호를 입력하세요 (+, -, *, /): ");
+				System.out.print("사칙연산 기호를 입력하세요 (+, -, *, /): ");
 
-			char operator = sc.next().charAt(0);
-			validateInputOperator(operator);
+				char operator = sc.next().charAt(0);
+				validateInputOperator(operator);
 
-			int result = calculate(num1, num2, operator);
-			System.out.printf("%d %c %d = %d\n", num1, operator, num2, result);
-		} catch (InputMismatchException | IllegalArgumentException e) {
-			System.out.println("입력값을 다시 확인 해주세요!");
-		} catch (ArithmeticException e) {
-			System.out.println("연산중 예외가 발생 했습니다.");
-			System.out.println("원인:" + e.getMessage());
-			throw e;
-		} catch (Exception e) {
-			System.out.println("예상하지 못한 예외가 발생했습니다.");
-			throw e;
+				int result = calculate(num1, num2, operator);
+				System.out.printf("%d %c %d = %d\n", num1, operator, num2, result);
+				System.out.print("종료 할까요? (exit 입력): ");
+				String exit = sc.next();
+
+				if ("exit".equalsIgnoreCase(exit)) {
+					System.out.println("프로그램을 종료합니다.");
+					break;
+				}
+			} catch (InputMismatchException | IllegalArgumentException e) {
+				System.out.println("입력값을 다시 확인 해주세요!");
+			} catch (ArithmeticException e) {
+				System.out.println("연산중 예외가 발생 했습니다.");
+				System.out.println("원인:" + e.getMessage());
+				throw e;
+			} catch (Exception e) {
+				System.out.println("예상하지 못한 예외가 발생했습니다.");
+				throw e;
+			}
 		}
 	}
 
