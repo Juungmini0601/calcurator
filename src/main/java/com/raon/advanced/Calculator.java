@@ -1,10 +1,13 @@
 package com.raon.advanced;
 
-import static com.raon.middle.operator.OperatorConstant.*;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.OptionalInt;
+import java.util.List;
+import java.util.Optional;
+
+import com.raon.advanced.operator.Operator;
+import com.raon.advanced.operator.OperatorConstant;
+import com.raon.advanced.operator.OperatorMapping;
 
 /**
  * @author    : kimjungmin
@@ -14,29 +17,32 @@ import java.util.OptionalInt;
  * 사칙 연산 수행 후 결과값 반환
  * TODO 연산 결과가 오버플로우 되면 어떻게 하나? 일단 PASS (큰 수 연산)
  */
-public class Calculator {
+public class Calculator<T extends Double> {
 
-	private final Deque<Integer> resultHistories = new ArrayDeque<>();
+	private final Deque<Double> resultHistories = new ArrayDeque<>();
+	private final OperatorMapping<T> operatorMapping = new OperatorMapping<>();
 
-	public int calculate(int num1, int num2, char operator) {
-		int result = switch (operator) {
-			case ADD -> num1 + num2;
-			case MINUS -> num1 - num2;
-			case MULTIPLY -> num1 * num2;
-			case DIVIDE -> num1 / num2;
-			default -> throw new IllegalStateException("연산자에 이상한 값이 들어왔습니다.");
-		};
+	public Double calculate(T num1, T num2, OperatorConstant operatorKey) {
+		// TODO 여기도 지금 Double로 땜빵 되어 있음.
+		Operator<Double> operator = operatorMapping.get(operatorKey);
+		Double result = operator.execute(num1, num2);
 
 		resultHistories.add(result);
 		return result;
 	}
 
-	public OptionalInt remove() {
+	public Optional<Double> remove() {
 		if (resultHistories.isEmpty()) {
 			System.out.println("calculator: no result");
-			return OptionalInt.empty();
+			return Optional.empty();
 		}
 
-		return OptionalInt.of(resultHistories.removeLast());
+		return Optional.of(resultHistories.removeLast());
+	}
+
+	public List<Double> getGreatherThanList(double value) {
+		return resultHistories.stream()
+			.filter(x -> x > value)
+			.toList();
 	}
 }
