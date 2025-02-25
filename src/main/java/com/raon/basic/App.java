@@ -36,15 +36,29 @@ public class App {
 			char operator = sc.next().charAt(0);
 			validateInputOperator(operator);
 
-			System.out.println("숫자1: " + num1);
-			System.out.println("숫자2: " + num2);
-			System.out.println("연산자: " + operator);
+			int result = calculate(num1, num2, operator);
+			System.out.printf("%d %c %d = %d\n", num1, operator, num2, result);
 		} catch (InputMismatchException | IllegalArgumentException e) {
 			System.out.println("입력값을 다시 확인 해주세요!");
+		} catch (ArithmeticException e) {
+			System.out.println("연산중 예외가 발생 했습니다.");
+			System.out.println("원인:" + e.getMessage());
+			throw e;
 		} catch (Exception e) {
 			System.out.println("예상하지 못한 예외가 발생했습니다.");
 			throw e;
 		}
+	}
+
+	// TODO 연산 결과가 오버플로우 되면 어떻게 하나? 일단 PASS (큰 수 연산)
+	private static int calculate(int num1, int num2, char operator) {
+		return switch (operator) {
+			case ADD -> num1 + num2;
+			case MINUS -> num1 - num2;
+			case MULTIPLY -> num1 * num2;
+			case DIVIDE -> num1 / num2;
+			default -> throw new IllegalStateException("연산자에 이상한 값이 들어왔습니다.");
+		};
 	}
 
 	private static void validateInputOperator(char operator) {
