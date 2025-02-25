@@ -16,7 +16,7 @@ import java.util.OptionalInt;
  */
 public class Calculator {
 
-	private Deque<Integer> resultHistories = new ArrayDeque<>();
+	private final Deque<Integer> resultHistories = new ArrayDeque<>();
 
 	public int calculate(int num1, int num2, char operator) {
 		int result = switch (operator) {
