@@ -11,7 +11,7 @@ import java.util.List;
 public class Commands {
 	private static final List<String> commands = List.of(CALC, REMOVE, EXIT);
 
-	public boolean isCommand(String command) {
+	public boolean contains(String command) {
 		return commands.contains(command);
 	}
 }

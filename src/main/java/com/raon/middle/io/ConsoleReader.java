@@ -31,7 +31,7 @@ public class ConsoleReader {
 		}
 
 		private static void validateCommand(String command) {
-			if (!commands.isCommand(command)) {
+			if (!commands.contains(command)) {
 				throw new IllegalArgumentException("올바른 명령어가 아닙니다.");
 			}
 		}
