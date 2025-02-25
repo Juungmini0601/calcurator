@@ -22,29 +22,21 @@ public class App {
 	public static void main(String[] args) {
 		while (true) {
 			try {
-				int num1 = consoleReader.readInt();
-				int num2 = consoleReader.readInt();
-				char operator = consoleReader.readOperator();
-
-				int result = calculator.calculate(num1, num2, operator);
-
-				consoleWriter.printResult(num1, num2, operator, result);
 				consoleWriter.showCommands();
-
 				String command = consoleReader.readCommand();
-
 				// TODO 조금 더 좋은 방법이 있을 거 같음
 				if (CALC.equalsIgnoreCase(command)) {
-					continue;
-				}
+					int num1 = consoleReader.readInt();
+					int num2 = consoleReader.readInt();
+					char operator = consoleReader.readOperator();
 
-				if (REMOVE.equalsIgnoreCase(command)) {
+					int result = calculator.calculate(num1, num2, operator);
+
+					consoleWriter.printResult(num1, num2, operator, result);
+				} else if (REMOVE.equalsIgnoreCase(command)) {
 					calculator.remove()
 						.ifPresent(removeValue -> System.out.println("removed Value: " + removeValue));
-					continue;
-				}
-
-				if (EXIT.equalsIgnoreCase(command)) {
+				} else if (EXIT.equalsIgnoreCase(command)) {
 					System.out.println("프로그램을 종료합니다.");
 					break;
 				}

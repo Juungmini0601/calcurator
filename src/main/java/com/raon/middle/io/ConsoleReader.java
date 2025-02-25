@@ -38,12 +38,17 @@ public class ConsoleReader {
 	}
 
 	public String readCommand() {
-		System.out.print("명령어 입력: ");
-		String command = sc.next();
+		try {
+			System.out.print("명령어 입력: ");
+			String command = sc.next();
 
-		Validator.validateCommand(command);
+			Validator.validateCommand(command);
 
-		return command;
+			return command;
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
 	}
 
 	public int readInt() {
