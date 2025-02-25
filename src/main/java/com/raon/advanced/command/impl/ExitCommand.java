@@ -1,4 +1,6 @@
-package com.raon.advanced.command;
+package com.raon.advanced.command.impl;
+
+import com.raon.advanced.command.Command;
 
 /**
  * @author    : kimjungmin
