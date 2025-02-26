@@ -12,7 +12,6 @@ import com.raon.advanced.operator.OperatorMapping;
 /**
  * @author    : kimjungmin
  * Created on : 2025. 2. 25.
- *
  * 2단계 계산기 구현 클래스
  * 사칙 연산 수행 후 결과값 반환
  * TODO 연산 결과가 오버플로우 되면 어떻게 하나? 일단 PASS (큰 수 연산)
