@@ -20,10 +20,9 @@ import com.raon.advanced.operator.OperatorMapping;
 public class Calculator<T extends Double> {
 
 	private final Deque<Double> resultHistories = new ArrayDeque<>();
-	private final OperatorMapping<T> operatorMapping = new OperatorMapping<>();
+	private final OperatorMapping operatorMapping = new OperatorMapping();
 
 	public Double calculate(T num1, T num2, OperatorConstant operatorKey) {
-		// TODO 여기도 지금 Double로 땜빵 되어 있음.
 		Operator<Double> operator = operatorMapping.get(operatorKey);
 		Double result = operator.execute(num1, num2);
 
