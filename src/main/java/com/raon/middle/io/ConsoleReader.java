@@ -9,10 +9,12 @@ import com.raon.middle.operator.Operators;
  * @author    : kimjungmin
  * Created on : 2025. 2. 25.
  */
+// 콘솔 입력
 public class ConsoleReader {
 
 	private static final Scanner sc = new Scanner(System.in);
 
+	// 입력 데이터 검증기
 	private static class Validator {
 		private static final Operators operators = new Operators();
 		private static final Commands commands = new Commands();

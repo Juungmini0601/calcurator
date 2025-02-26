@@ -4,6 +4,7 @@ package com.raon.middle.io;
  * @author    : kimjungmin
  * Created on : 2025. 2. 25.
  */
+// 콘솔 출력
 public class ConsoleWriter {
 
 	public void printResult(int num1, int num2, char operator, int result) {

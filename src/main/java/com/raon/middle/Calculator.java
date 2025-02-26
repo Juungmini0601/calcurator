@@ -14,6 +14,7 @@ import java.util.OptionalInt;
  * 사칙 연산 수행 후 결과값 반환
  * TODO 연산 결과가 오버플로우 되면 어떻게 하나? 일단 PASS (큰 수 연산)
  */
+// 계산기
 public class Calculator {
 
 	private final Deque<Integer> resultHistories = new ArrayDeque<>();

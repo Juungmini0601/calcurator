@@ -66,16 +66,19 @@ public class App {
 			case MINUS -> num1 - num2;
 			case MULTIPLY -> num1 * num2;
 			case DIVIDE -> num1 / num2;
+			// 연산자 검증을 진행 했기 때문에 여기 들어올 일은 없음
 			default -> throw new IllegalStateException("연산자에 이상한 값이 들어왔습니다.");
 		};
 	}
 
+	// 상수에 포함되지 않는 연산자 문자가 들어올 경우 예외 처리
 	private static void validateInputOperator(char operator) {
 		if (!OPERATORS.contains(operator)) {
 			throw new IllegalArgumentException("연산자를 정확히 입력 해주세요!");
 		}
 	}
 
+	// 유효 하지 않은 정수 범위가 들어올 경우 예외 처리
 	private static void validateInputNumber(int num) {
 		if (num < 0) {
 			System.out.println("0 이상의 정수를 입력 해주세요");
