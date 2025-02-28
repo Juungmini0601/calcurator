@@ -1,25 +1,25 @@
 package com.raon.advanced.io;
 
 import java.util.Scanner;
+import java.util.function.Function;
 
 import com.raon.advanced.command.CommandConstant;
+import com.raon.advanced.io.type.NumberValidator;
 import com.raon.advanced.operator.OperatorConstant;
 
 /**
  * @author    : kimjungmin
  * Created on : 2025. 2. 25.
  */
-public class ConsoleReader {
-
+public class ConsoleReader<T extends Number & Comparable<T>> {
 	private static final Scanner sc = new Scanner(System.in);
+	// 문자열을 받아서 T 타입으로 반환
+	private final Function<String, T> converter;
+	private final NumberValidator<T> validator;
 
-	private static class Validator {
-		private static void validateInputNumber(double num) {
-			if (num < 0) {
-				System.out.println("0 이상의 실수를 입력 해주세요");
-				System.exit(-1);
-			}
-		}
+	public ConsoleReader(Function<String, T> converter, NumberValidator<T> validator) {
+		this.converter = converter;
+		this.validator = validator;
 	}
 
 	public CommandConstant readCommand() {
@@ -29,14 +29,17 @@ public class ConsoleReader {
 		return CommandConstant.fromKey(commandString);
 	}
 
-	public double readDouble() {
-		System.out.print("숫자 입력(0 이상의 실수): ");
-		double num1 = sc.nextDouble();
-		sc.nextLine(); // 버퍼 제거
+	public T readNumber() {
+		try {
+			System.out.print("숫자 입력(0 이상 실수): ");
+			T input = converter.apply(sc.nextLine());
+			validator.validate(input);
 
-		Validator.validateInputNumber(num1);
-
-		return num1;
+			return input;
+		} catch (Exception e) {
+			System.out.println("숫자를 입력 해주세요!");
+			throw e;
+		}
 	}
 
 	public OperatorConstant readOperator() {
@@ -44,7 +47,7 @@ public class ConsoleReader {
 
 		char operatorKey = sc.next().charAt(0);
 		sc.nextLine(); // 버퍼 제거
-		
+
 		return OperatorConstant.fromKey(operatorKey);
 	}
 }

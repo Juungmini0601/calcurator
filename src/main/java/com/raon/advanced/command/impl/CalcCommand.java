@@ -10,12 +10,12 @@ import com.raon.advanced.operator.OperatorConstant;
  * @author    : kimjungmin
  * Created on : 2025. 2. 25.
  */
-public class CalcCommand implements Command {
-	private final ConsoleReader consoleReader;
-	private final ConsoleWriter consoleWriter;
-	private final Calculator<Double> calculator;
+public class CalcCommand<T extends Number & Comparable<T>> implements Command {
+	private final ConsoleReader<T> consoleReader;
+	private final ConsoleWriter<T> consoleWriter;
+	private final Calculator<T> calculator;
 
-	public CalcCommand(ConsoleReader consoleReader, ConsoleWriter consoleWriter, Calculator<Double> calculator) {
+	public CalcCommand(ConsoleReader<T> consoleReader, ConsoleWriter<T> consoleWriter, Calculator<T> calculator) {
 		this.consoleReader = consoleReader;
 		this.consoleWriter = consoleWriter;
 		this.calculator = calculator;
@@ -24,11 +24,11 @@ public class CalcCommand implements Command {
 	@Override
 	public void execute() {
 		try {
-			double num1 = consoleReader.readDouble();
-			double num2 = consoleReader.readDouble();
+			T num1 = consoleReader.readNumber();
+			T num2 = consoleReader.readNumber();
 			OperatorConstant operator = consoleReader.readOperator();
 
-			double result = calculator.calculate(num1, num2, operator);
+			T result = calculator.calculate(num1, num2, operator);
 
 			consoleWriter.printResult(num1, num2, operator.getKey(), result);
 		} catch (ArithmeticException e) {

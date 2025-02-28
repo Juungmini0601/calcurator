@@ -7,10 +7,10 @@ import com.raon.advanced.command.Command;
  * @author    : kimjungmin
  * Created on : 2025. 2. 25.
  */
-public class RemoveCommand implements Command {
-	private final Calculator<Double> calculator;
+public class RemoveCommand<T extends Number & Comparable<T>> implements Command {
+	private final Calculator<T> calculator;
 
-	public RemoveCommand(Calculator<Double> calculator) {
+	public RemoveCommand(Calculator<T> calculator) {
 		this.calculator = calculator;
 	}
 

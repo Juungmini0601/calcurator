@@ -6,6 +6,8 @@ import com.raon.advanced.command.CommandConstant;
 import com.raon.advanced.command.CommandMapping;
 import com.raon.advanced.io.ConsoleReader;
 import com.raon.advanced.io.ConsoleWriter;
+import com.raon.advanced.io.type.DoubleValidator;
+import com.raon.advanced.operator.type.DoubleOperator;
 
 /**
  * @author    : kimjungmin
@@ -14,10 +16,11 @@ import com.raon.advanced.io.ConsoleWriter;
  * 자바 계산기 과제 2단계 구현
  */
 public class App {
-
-	private static final CommandMapping commandMapping = new CommandMapping();
-	private static final ConsoleReader consoleReader = new ConsoleReader();
-	private static final ConsoleWriter consoleWriter = new ConsoleWriter();
+	// @formatter:off
+	private static final ConsoleReader<Double> consoleReader = new ConsoleReader<>(Double::parseDouble, new DoubleValidator());
+	private static final ConsoleWriter<Double> consoleWriter = new ConsoleWriter<>();
+	private static final Calculator<Double> calculator = new Calculator<>(new DoubleOperator());
+	private static final CommandMapping<Double> commandMapping = new CommandMapping<>(consoleWriter, consoleReader, calculator);
 
 	public static void main(String[] args) {
 		while (true) {

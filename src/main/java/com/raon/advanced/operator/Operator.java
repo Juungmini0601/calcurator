@@ -5,6 +5,6 @@ package com.raon.advanced.operator;
  * Created on : 2025. 2. 25.
  */
 @FunctionalInterface
-public interface Operator<T extends Double> {
+public interface Operator<T extends Number & Comparable<T>> {
 	T execute(T num1, T num2);
 }

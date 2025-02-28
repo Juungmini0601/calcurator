@@ -6,13 +6,13 @@ import java.util.List;
  * @author    : kimjungmin
  * Created on : 2025. 2. 25.
  */
-public class ConsoleWriter {
+public class ConsoleWriter<T extends Number & Comparable<T>> {
 
-	public void printResult(double num1, double num2, char operator, double result) {
-		System.out.printf("%f %c %f = %f\n", num1, operator, num2, result);
+	public void printResult(T num1, T num2, char operator, T result) {
+		System.out.printf("%s %c %s = %s\n", num1, operator, num2, result);
 	}
 
-	public void printGreatherThanList(double x, List<Double> list) {
+	public void printGreatherThanList(T x, List<T> list) {
 		System.out.println(x + " 보다 큰 수: " + list);
 	}
 
