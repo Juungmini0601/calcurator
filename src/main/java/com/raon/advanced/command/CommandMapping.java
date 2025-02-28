@@ -2,7 +2,7 @@ package com.raon.advanced.command;
 
 import java.util.Map;
 
-import com.raon.advanced.Calculator;
+import com.raon.advanced.calculator.Calculator;
 import com.raon.advanced.command.impl.CalcCommand;
 import com.raon.advanced.command.impl.ExitCommand;
 import com.raon.advanced.command.impl.ListGraterThanCommand;

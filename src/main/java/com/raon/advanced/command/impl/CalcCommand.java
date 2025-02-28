@@ -1,6 +1,6 @@
 package com.raon.advanced.command.impl;
 
-import com.raon.advanced.Calculator;
+import com.raon.advanced.calculator.Calculator;
 import com.raon.advanced.command.Command;
 import com.raon.advanced.io.ConsoleReader;
 import com.raon.advanced.io.ConsoleWriter;
